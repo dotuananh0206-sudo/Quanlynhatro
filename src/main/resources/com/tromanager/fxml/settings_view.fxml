@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.SettingsController">
+    <VBox spacing="20" style="-fx-padding: 16 24 30 24; -fx-background-color: #f8fafc;">
+        <!-- Header Actions -->
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="Cài Đặt Hệ Thống &amp; Đơn Giá Dịch Vụ" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #94a3b8;" text="Cấu hình áp dụng tự động cho tính tiền phòng, hóa đơn và thông báo" />
+            </VBox>
+            <HBox spacing="10">
+                <Button fx:id="btnResetSettings" styleClass="btn-outline" text="Khôi phục mặc định" />
+                <Button fx:id="btnSaveSettings" styleClass="btn-primary" text="Lưu cấu hình" />
+            </HBox>
+        </HBox>
+
+        <!-- SECTION 1: THÔNG TIN KHU TRỌ & CHỦ NHÀ -->
+        <VBox spacing="14" styleClass="card">
+            <Label styleClass="card-title" text="1. THÔNG TIN KHU TRỌ &amp; CHỦ HỘ" />
+            <GridPane hgap="16" vgap="12">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50.0" />
+                    <ColumnConstraints percentWidth="50.0" />
+                </columnConstraints>
+
+                <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Tên khu trọ / Tòa nhà:" />
+                    <TextField fx:id="txtBuildingName" text="Khu trọ Hòa Bình" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Họ tên chủ nhà trọ:" />
+                    <TextField fx:id="txtOwnerName" text="Nguyễn Minh Tuấn" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Địa chỉ khu trọ:" />
+                    <TextField fx:id="txtAddress" text="Số 18, Ngõ 45, Đường Hòa Bình, Cầu Giấy, Hà Nội" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Số điện thoại Zalo liên hệ:" />
+                    <TextField fx:id="txtPhone" text="0988 123 456" styleClass="search-field" />
+                </VBox>
+            </GridPane>
+        </VBox>
+
+        <!-- SECTION 2: BIỂU GIÁ ĐIỆN NƯỚC & DỊCH VỤ -->
+        <VBox spacing="14" styleClass="card">
+            <Label styleClass="card-title" text="2. BIỂU GIÁ DỊCH VỤ MẶC ĐỊNH" />
+            <GridPane hgap="16" vgap="12">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="33.33" />
+                    <ColumnConstraints percentWidth="33.33" />
+                    <ColumnConstraints percentWidth="33.33" />
+                </columnConstraints>
+
+                <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Đơn giá điện (VNĐ/kWh):" />
+                    <TextField fx:id="txtElectricityPrice" text="3500" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Đơn giá nước (VNĐ/m³):" />
+                    <TextField fx:id="txtWaterPrice" text="25000" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Tiền mạng Internet (VNĐ/phòng):" />
+                    <TextField fx:id="txtWifiPrice" text="50000" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Tiền vệ sinh rác (VNĐ/phòng):" />
+                    <TextField fx:id="txtGarbagePrice" text="30000" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Tiền gửi xe máy (VNĐ/xe):" />
+                    <TextField fx:id="txtParkingPrice" text="100000" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Quy tắc tính nước:" />
+                    <ComboBox fx:id="cbWaterType" prefWidth="250.0" styleClass="combo-box" />
+                </VBox>
+            </GridPane>
+        </VBox>
+
+        <!-- SECTION 3: TÀI KHOẢN NGÂN HÀNG & CHUYỂN KHOẢN -->
+        <VBox spacing="14" styleClass="card">
+            <Label styleClass="card-title" text="3. TÀI KHOẢN NGÂN HÀNG NHẬN TIỀN PHÒNG (QR CODE)" />
+            <GridPane hgap="16" vgap="12">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="33.33" />
+                    <ColumnConstraints percentWidth="33.33" />
+                    <ColumnConstraints percentWidth="33.33" />
+                </columnConstraints>
+
+                <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Ngân hàng:" />
+                    <ComboBox fx:id="cbBankName" prefWidth="250.0" styleClass="combo-box" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Số tài khoản:" />
+                    <TextField fx:id="txtBankNumber" text="19034567890012" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Tên chủ tài khoản:" />
+                    <TextField fx:id="txtBankHolder" text="NGUYEN MINH TUAN" styleClass="search-field" />
+                </VBox>
+            </GridPane>
+        </VBox>
+
+        <!-- SECTION 4: CHU KỲ CHỐT SỐ & THU TIỀN -->
+        <VBox spacing="14" styleClass="card">
+            <Label styleClass="card-title" text="4. CHU KỲ CHỐT ĐIỆN NƯỚC &amp; THU TIỀN HÀNG THÁNG" />
+            <GridPane hgap="16" vgap="12">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="33.33" />
+                    <ColumnConstraints percentWidth="33.33" />
+                    <ColumnConstraints percentWidth="33.33" />
+                </columnConstraints>
+
+                <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Ngày chốt số điện nước:" />
+                    <TextField fx:id="txtBillingDay" text="Ngày 25 hàng tháng" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Thời gian phát hành hóa đơn:" />
+                    <TextField fx:id="txtIssueDay" text="Từ ngày 28 đến ngày 01" styleClass="search-field" />
+                </VBox>
+
+                <VBox spacing="4" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Label style="-fx-font-weight: 600; -fx-text-fill: #475569; -fx-font-size: 12px;" text="Hạn chót đóng tiền phòng:" />
+                    <TextField fx:id="txtDueDay" text="Ngày 05 hàng tháng" styleClass="search-field" />
+                </VBox>
+            </GridPane>
+        </VBox>
+
+        <VBox spacing="14" styleClass="card">
+            <Label styleClass="card-title" text="5. TÀI KHOẢN ĐĂNG NHẬP" />
+            <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 14 16;">
+                <StackPane style="-fx-background-color: #2563eb; -fx-background-radius: 50%; -fx-pref-width: 42px; -fx-pref-height: 42px; -fx-min-width: 42px; -fx-min-height: 42px;">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: white;" text="A" />
+                </StackPane>
+                <VBox spacing="3" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="admin" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="Quản trị viên · Đang hoạt động" />
+                </VBox>
+                <Button fx:id="btnChangePassword" styleClass="btn-outline" text="Đổi mật khẩu" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label style="-fx-text-fill: #16a34a; -fx-font-size: 14px;" text="●" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="Tài khoản được bảo vệ bằng mật khẩu. Dùng Quên mật khẩu tại màn hình đăng nhập để khôi phục." wrapText="true" />
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

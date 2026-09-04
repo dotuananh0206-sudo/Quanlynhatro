@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-padding: 16 24 24 24; -fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.RoomManagementController">
+    <!-- SUB-HEADER: FILTERS & SUMMARY -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <!-- Building Combo Box -->
+        <ComboBox fx:id="cbBuilding" prefWidth="180.0" styleClass="combo-box" />
+        <ComboBox fx:id="cbRoomStatus" prefWidth="150.0" styleClass="combo-box" />
+
+        <!-- Summary Indicators -->
+        <HBox alignment="CENTER_LEFT" spacing="14" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="6">
+                <StackPane style="-fx-background-color: #3b82f6; -fx-background-radius: 50%; -fx-pref-width: 8px; -fx-pref-height: 8px;" />
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tổng phòng:" />
+                <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="24" />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="6">
+                <StackPane style="-fx-background-color: #059669; -fx-background-radius: 50%; -fx-pref-width: 8px; -fx-pref-height: 8px;" />
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Đang thuê:" />
+                <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="20" />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="6">
+                <StackPane style="-fx-background-color: #f59e0b; -fx-background-radius: 50%; -fx-pref-width: 8px; -fx-pref-height: 8px;" />
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Trống:" />
+                <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="3" />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="6">
+                <StackPane style="-fx-background-color: #ef4444; -fx-background-radius: 50%; -fx-pref-width: 8px; -fx-pref-height: 8px;" />
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Sắp hết HĐ:" />
+                <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="1" />
+            </HBox>
+        </HBox>
+
+        <!-- Filter and Add Buttons -->
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <Button fx:id="btnAddRoom" styleClass="btn-primary" text="+ Thêm phòng" />
+        </HBox>
+    </HBox>
+
+    <!-- MAIN WORKSPACE: SPLIT GRID + DETAILS -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- ROOMS GRID (LEFT/CENTER) -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
+            <VBox fx:id="floorsContainer" spacing="20" style="-fx-padding: 0 4 10 0;" />
+        </ScrollPane>
+
+        <!-- ROOM DETAILS PANEL (RIGHT) -->
+        <VBox fx:id="detailsPanel" prefWidth="310.0" spacing="16" styleClass="card" HBox.hgrow="NEVER">
+            <!-- Header -->
+            <VBox spacing="4">
+                <Label fx:id="lblDetailRoomName" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="Chi Tiết Phòng P.101" />
+                <Label fx:id="lblDetailLocation" style="-fx-font-size: 11px; -fx-text-fill: #94a3b8;" text="Khu trọ Hòa Bình - Tầng 1" />
+            </VBox>
+
+            <!-- Status Badge -->
+            <HBox>
+                <Label fx:id="lblDetailStatus" styleClass="badge-green" text="●  Đang thuê" />
+            </HBox>
+
+            <!-- Section 1: Tenant Info -->
+            <VBox fx:id="boxTenantInfo" spacing="8" style="-fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0; -fx-padding: 12 0 0 0;">
+                <Label style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #475569;" text="THÔNG TIN KHÁCH THUÊ" />
+                
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Khách thuê:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblTenantName" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="Nguyễn Văn An" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Số điện thoại:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblPhoneNumber" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="0912 345 678" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Hợp đồng:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblContractPeriod" style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="01/03/2024 - 01/03/2025" />
+                </HBox>
+            </VBox>
+
+            <!-- Section 2: Price & Services -->
+            <VBox spacing="8" style="-fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0; -fx-padding: 12 0 0 0;">
+                <Label style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #475569;" text="CHI PHÍ DỊCH VỤ" />
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tiền phòng:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblRentPrice" style="-fx-font-size: 13px; -fx-font-weight: 800; -fx-text-fill: #2563eb;" text="3.500.000đ/tháng" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tiền điện:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblElectricityPrice" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="3.500đ/kWh" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tiền nước:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblWaterPrice" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="25.000đ/m³" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Diện tích:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblArea" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="25m²" />
+                </HBox>
+            </VBox>
+
+            <!-- Section 3: Amenities -->
+            <VBox spacing="8" style="-fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0; -fx-padding: 12 0 0 0;">
+                <Label style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #475569;" text="TIỆN NGHI PHÒNG" />
+                <FlowPane fx:id="amenitiesFlowPane" hgap="6" vgap="6" />
+            </VBox>
+
+            <!-- Actions Buttons -->
+            <VBox spacing="8" style="-fx-padding: 8 0 0 0;">
+                <Button fx:id="btnCreateInvoice" maxWidth="Infinity" styleClass="btn-primary" text="Tạo hóa đơn" />
+                <Button fx:id="btnViewContract" maxWidth="Infinity" styleClass="btn-secondary" text="Xem hợp đồng" />
+                <Button fx:id="btnEditRoom" maxWidth="Infinity" styleClass="btn-outline" text="Chỉnh sửa phòng" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

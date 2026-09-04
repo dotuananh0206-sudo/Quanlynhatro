@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-padding: 16 24 24 24; -fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.AssetsController">
+    <!-- ROW 1: 4 STATS CARDS -->
+    <HBox spacing="14">
+        <VBox fx:id="cardTotalAssets" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Tổng thiết bị &amp; tài sản" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconTotalAssets" styleClass="icon-box-blue" />
+            </HBox>
+            <Label styleClass="metric-value" text="184 món" />
+            <Label styleClass="metric-trend-green" text="Tổng giá trị: 450.000.000đ" />
+        </VBox>
+
+        <VBox fx:id="cardGoodAssets" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Đang hoạt động tốt" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconGoodAssets" styleClass="icon-box-green" />
+            </HBox>
+            <Label styleClass="metric-value" text="172 món" />
+            <Label styleClass="metric-trend-green" text="Tỷ lệ hoạt động 93.5%" />
+        </VBox>
+
+        <VBox fx:id="cardMaintAssets" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Cần bảo dưỡng / sửa chữa" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconMaintAssets" styleClass="icon-box-yellow" />
+            </HBox>
+            <Label styleClass="metric-value" text="8 món" />
+            <Label styleClass="metric-trend-red" text="Điều hòa &amp; máy lạnh cũ" />
+        </VBox>
+
+        <VBox fx:id="cardBrokenAssets" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Đã hỏng / Cần thay mới" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconBrokenAssets" styleClass="icon-box-red" />
+            </HBox>
+            <Label styleClass="metric-value" text="4 món" />
+            <Label styleClass="metric-trend-red" text="Vòi sen &amp; bóng đèn" />
+        </VBox>
+    </HBox>
+
+    <!-- ROW 2: SEARCH & FILTER -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <TextField fx:id="txtSearchAsset" promptText="Tìm theo tên thiết bị, mã tài sản, số phòng..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="cbCategoryFilter" prefWidth="180.0" styleClass="combo-box" />
+        <ComboBox fx:id="cbAssetStatus" prefWidth="180.0" styleClass="combo-box" />
+        <Button fx:id="btnAddAsset" styleClass="btn-primary" text="+ Thêm tài sản" />
+    </HBox>
+
+    <!-- ROW 3: SPLIT LIST + DETAILS -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Assets List (Left) -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
+            <VBox fx:id="assetsListContainer" spacing="10" style="-fx-padding: 0 4 10 0;" />
+        </ScrollPane>
+
+        <!-- Asset Details Panel (Right) -->
+        <VBox fx:id="assetDetailsPanel" prefWidth="320.0" spacing="14" styleClass="card" HBox.hgrow="NEVER">
+            <VBox spacing="4">
+                <Label fx:id="lblDetailCode" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="TS-001" />
+                <Label fx:id="lblDetailName" style="-fx-font-size: 13px; -fx-font-weight: 700; -fx-text-fill: #2563eb;" text="Điều hòa Daikin Inverter 9000BTU" />
+            </VBox>
+
+            <HBox>
+                <Label fx:id="lblDetailStatus" styleClass="badge-green" text="●  Hoạt động tốt" />
+            </HBox>
+
+            <VBox spacing="8" style="-fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0; -fx-padding: 10 0 0 0;">
+                <Label style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #475569;" text="THÔNG SỐ KỸ THUẬT" />
+                
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Vị trí lắp đặt:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailLocation" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="Phòng P.101" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Danh mục thiết bị:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailCategory" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="Điện lạnh" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Số lượng:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailQuantity" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="1 chiếc" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Giá trị mua mới:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailValue" style="-fx-font-size: 13px; -fx-font-weight: 800; -fx-text-fill: #2563eb;" text="8.500.000đ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Ngày bàn giao:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailInstallDate" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="01/03/2024" />
+                </HBox>
+            </VBox>
+
+            <VBox spacing="8" style="-fx-padding: 8 0 0 0;">
+                <Button fx:id="btnMaintenance" maxWidth="Infinity" styleClass="btn-primary" text="Yêu cầu bảo trì / Sửa chữa" />
+                <Button fx:id="btnEditAsset" maxWidth="Infinity" styleClass="btn-secondary" text="Cập nhật vị trí &amp; Tình trạng" />
+                <Button fx:id="btnLiquidateAsset" maxWidth="Infinity" styleClass="btn-outline" text="Thanh lý / Hủy tài sản" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

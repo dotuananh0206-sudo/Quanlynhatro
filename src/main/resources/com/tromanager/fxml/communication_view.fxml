@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-padding: 16 24 24 24; -fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.CommunicationController">
+    <!-- ROW 1: 4 STATS CARDS -->
+    <HBox spacing="14">
+        <VBox fx:id="metricSent" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Thông báo đã gửi" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconAnnounce" styleClass="icon-box-blue" />
+            </HBox>
+            <Label fx:id="lblSentCount" styleClass="metric-value" text="12 thông báo" />
+            <Label styleClass="metric-trend-green" text="Đã gửi qua Zalo &amp; SMS" />
+        </VBox>
+
+        <VBox fx:id="metricUnread" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Tin nhắn chưa đọc" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconUnread" styleClass="icon-box-yellow" />
+            </HBox>
+            <Label fx:id="lblUnreadCount" styleClass="metric-value" text="5 tin nhắn" />
+            <Label styleClass="metric-trend-red" text="Cần phản hồi hôm nay" />
+        </VBox>
+
+        <VBox fx:id="metricRequests" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Yêu cầu sửa chữa mới" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconRequests" styleClass="icon-box-red" />
+            </HBox>
+            <Label fx:id="lblNotificationCount" styleClass="metric-value" text="8 thông báo" />
+            <Label styleClass="metric-trend-red" text="Hóa đơn, hợp đồng &amp; bảo trì" />
+        </VBox>
+
+        <VBox fx:id="metricSatisfaction" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Độ hài lòng cư dân" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconSatisfaction" styleClass="icon-box-green" />
+            </HBox>
+            <Label fx:id="lblResponseRate" styleClass="metric-value" text="98.5%" />
+            <Label styleClass="metric-trend-green" text="Đánh giá dịch vụ 5 sao" />
+        </VBox>
+    </HBox>
+
+    <!-- ROW 2: MAIN CHAT INTERFACE (SPLIT) -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Chat Channels (Left) -->
+        <VBox prefWidth="330.0" spacing="12" styleClass="card" HBox.hgrow="NEVER">
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="Tin nhắn &amp; Thông báo" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnBroadcast" styleClass="btn-primary" text="Soạn mới" />
+            </HBox>
+
+            <TextField fx:id="txtSearchChat" promptText="Tìm theo tên, phòng hoặc nội dung..." styleClass="search-field" />
+
+            <HBox spacing="4" style="-fx-background-color: #f1f5f9; -fx-padding: 4; -fx-background-radius: 7;">
+                <ToggleButton fx:id="btnInbox" selected="true" styleClass="filter-toggle" text="Hộp thư" />
+                <ToggleButton fx:id="btnNotifications" styleClass="filter-toggle" text="Thông báo" />
+                <ToggleButton fx:id="btnSent" styleClass="filter-toggle" text="Đã gửi" />
+                <ToggleButton fx:id="btnArchived" styleClass="filter-toggle" text="Đã lưu trữ" />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="Danh sách" style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #64748b;" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <ComboBox fx:id="cboMessageFilter" prefWidth="125.0" promptText="Tất cả" styleClass="combo-box" />
+            </HBox>
+
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                <VBox fx:id="chatListContainer" spacing="6" />
+            </ScrollPane>
+        </VBox>
+
+        <!-- Message Stream & Send Box (Right) -->
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <!-- Chat Header -->
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 0 0 10 0; -fx-border-color: #f1f5f9; -fx-border-width: 0 0 1 0;">
+                <StackPane style="-fx-background-color: #3b82f6; -fx-background-radius: 50%; -fx-pref-width: 36px; -fx-pref-height: 36px;">
+                    <Label fx:id="lblChatHeaderInitials" style="-fx-font-weight: 800; -fx-text-fill: white;" text="NA" />
+                </StackPane>
+                <VBox spacing="1">
+                    <Label fx:id="lblChatHeaderName" style="-fx-font-size: 14px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="Nguyễn Văn An (P.101)" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #059669;" text="● Đang trực tuyến" />
+                </VBox>
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnCallTenant" styleClass="btn-secondary" text="Gọi điện" />
+                <Button fx:id="btnMarkRead" styleClass="btn-secondary" text="Đánh dấu đã đọc" />
+                <Button fx:id="btnArchive" styleClass="btn-secondary" text="Lưu trữ" />
+                <Button fx:id="btnRestore" styleClass="btn-secondary" text="Khôi phục" visible="false" managed="false" />
+            </HBox>
+
+            <!-- Messages Stream Area -->
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                <VBox fx:id="messagesStreamContainer" spacing="12" style="-fx-padding: 10 4;" />
+            </ScrollPane>
+
+            <!-- Send Box -->
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 8 0 0 0; -fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0;">
+                <Button fx:id="btnAttach" styleClass="btn-secondary" text="Đính kèm" />
+                <TextField fx:id="txtMessageInput" promptText="Nhập tin nhắn cho khách thuê..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnSendMessage" styleClass="btn-primary" text="Gửi" />
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

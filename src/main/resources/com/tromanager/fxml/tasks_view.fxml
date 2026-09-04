@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-padding: 16 24 24 24; -fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.TasksController">
+    <!-- ROW 1: 4 STATS CARDS -->
+    <HBox spacing="14">
+        <VBox fx:id="cardTodo" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Công việc cần làm" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconTodo" styleClass="icon-box-blue" />
+            </HBox>
+            <Label styleClass="metric-value" text="8 việc" />
+            <Label styleClass="metric-trend-green" text="Đã phân công kỹ thuật" />
+        </VBox>
+
+        <VBox fx:id="cardInProgress" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Đang tiến hành xử lý" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconInProgress" styleClass="icon-box-yellow" />
+            </HBox>
+            <Label styleClass="metric-value" text="3 việc" />
+            <Label styleClass="metric-trend-green" text="Đang sửa chữa tại phòng" />
+        </VBox>
+
+        <VBox fx:id="cardDone" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Đã xong trong tháng" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconDone" styleClass="icon-box-green" />
+            </HBox>
+            <Label styleClass="metric-value" text="25 việc" />
+            <Label styleClass="metric-trend-green" text="Tỷ lệ hoàn thành 95%" />
+        </VBox>
+
+        <VBox fx:id="cardEmergency" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Việc khẩn cấp" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconEmergency" styleClass="icon-box-red" />
+            </HBox>
+            <Label styleClass="metric-value" text="2 việc" />
+            <Label styleClass="metric-trend-red" text="Sự cố điện nước" />
+        </VBox>
+    </HBox>
+
+    <!-- ROW 2: SEARCH & FILTER -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <TextField fx:id="txtSearchTask" promptText="Tìm theo nội dung công việc, phòng, nhân viên..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="cbPriorityFilter" prefWidth="180.0" styleClass="combo-box" />
+        <ComboBox fx:id="cbStatusFilter" prefWidth="180.0" styleClass="combo-box" />
+        <Button fx:id="btnAddTask" styleClass="btn-primary" text="+ Thêm công việc mới" />
+    </HBox>
+
+    <!-- ROW 3: KANBAN 3 COLUMNS -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Col 1: To-Do -->
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label style="-fx-font-size: 13px; -fx-font-weight: 800; -fx-text-fill: #1e293b;" text="📌 CẦN XỬ LÝ (TO-DO)" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Label style="-fx-background-color: #eff6ff; -fx-text-fill: #2563eb; -fx-font-weight: 700; -fx-font-size: 11px; -fx-padding: 2 8; -fx-background-radius: 10;" text="3" />
+            </HBox>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                <VBox fx:id="colTodoContainer" spacing="10" />
+            </ScrollPane>
+        </VBox>
+
+        <!-- Col 2: In Progress -->
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label style="-fx-font-size: 13px; -fx-font-weight: 800; -fx-text-fill: #1e293b;" text="⏳ ĐANG XỬ LÝ (IN PROGRESS)" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Label style="-fx-background-color: #fef3c7; -fx-text-fill: #d97706; -fx-font-weight: 700; -fx-font-size: 11px; -fx-padding: 2 8; -fx-background-radius: 10;" text="2" />
+            </HBox>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                <VBox fx:id="colInProgressContainer" spacing="10" />
+            </ScrollPane>
+        </VBox>
+
+        <!-- Col 3: Done -->
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label style="-fx-font-size: 13px; -fx-font-weight: 800; -fx-text-fill: #1e293b;" text="✅ ĐÃ HOÀN THÀNH (DONE)" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Label style="-fx-background-color: #dcfce7; -fx-text-fill: #059669; -fx-font-weight: 700; -fx-font-size: 11px; -fx-padding: 2 8; -fx-background-radius: 10;" text="3" />
+            </HBox>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                <VBox fx:id="colDoneContainer" spacing="10" />
+            </ScrollPane>
+        </VBox>
+    </HBox>
+</VBox>

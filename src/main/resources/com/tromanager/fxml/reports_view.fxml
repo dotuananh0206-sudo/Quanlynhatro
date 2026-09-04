@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.ReportsController">
+    <VBox spacing="16" style="-fx-padding: 16 24 24 24; -fx-background-color: #f8fafc;">
+        <!-- ROW 1: 4 STATS CARDS -->
+        <HBox spacing="14">
+            <VBox spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Tổng doanh thu (Tháng 8)" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconTotalRev" styleClass="icon-box-blue" />
+                </HBox>
+                <Label styleClass="metric-value" text="156.800.000đ" />
+                <Label styleClass="metric-trend-green" text="↑ +4.2% so với tháng 7" />
+            </VBox>
+
+            <VBox spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Tổng chi phí vận hành" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconTotalExp" styleClass="icon-box-red" />
+                </HBox>
+                <Label styleClass="metric-value" text="44.300.000đ" />
+                <Label styleClass="metric-trend-red" text="Bao gồm điện nước &amp; bảo trì" />
+            </VBox>
+
+            <VBox spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Lợi nhuận ròng thuần" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconNetProfit" styleClass="icon-box-green" />
+                </HBox>
+                <Label styleClass="metric-value" text="112.500.000đ" />
+                <Label styleClass="metric-trend-green" text="Biên lợi nhuận ròng 71.7%" />
+            </VBox>
+
+            <VBox spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Tỷ suất sinh lời (ROI)" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconROI" styleClass="icon-box-blue" />
+                </HBox>
+                <Label styleClass="metric-value" text="18.4% / năm" />
+                <Label styleClass="metric-trend-green" text="Hiệu quả đầu tư cao" />
+            </VBox>
+        </HBox>
+
+        <!-- ROW 2: 2 BREAKDOWN CARDS -->
+        <HBox spacing="16">
+            <!-- Revenue Structure -->
+            <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="card-title" text="Cơ cấu nguồn thu (Tháng 08/2024)" />
+                <VBox spacing="10">
+                    <VBox spacing="4">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #1e293b; -fx-font-size: 12px;" text="Tiền thuê phòng (82.5%)" />
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #2563eb; -fx-font-size: 12px;" text="129.360.000đ" />
+                        </HBox>
+                        <ProgressBar maxWidth="Infinity" progress="0.825" style="-fx-accent: #2563eb;" />
+                    </VBox>
+
+                    <VBox spacing="4">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #1e293b; -fx-font-size: 12px;" text="Tiền điện sinh hoạt (10.8%)" />
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #059669; -fx-font-size: 12px;" text="16.930.000đ" />
+                        </HBox>
+                        <ProgressBar maxWidth="Infinity" progress="0.108" style="-fx-accent: #059669;" />
+                    </VBox>
+
+                    <VBox spacing="4">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #1e293b; -fx-font-size: 12px;" text="Tiền nước sạch (4.2%)" />
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #0284c7; -fx-font-size: 12px;" text="6.580.000đ" />
+                        </HBox>
+                        <ProgressBar maxWidth="Infinity" progress="0.042" style="-fx-accent: #0284c7;" />
+                    </VBox>
+
+                    <VBox spacing="4">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #1e293b; -fx-font-size: 12px;" text="Dịch vụ khác &amp; rác (2.5%)" />
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #f59e0b; -fx-font-size: 12px;" text="3.930.000đ" />
+                        </HBox>
+                        <ProgressBar maxWidth="Infinity" progress="0.025" style="-fx-accent: #f59e0b;" />
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <!-- Expense Structure -->
+            <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="card-title" text="Cơ cấu chi phí vận hành" />
+                <VBox spacing="10">
+                    <VBox spacing="4">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #1e293b; -fx-font-size: 12px;" text="Hóa đơn điện lực EVN" />
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #dc2626; -fx-font-size: 12px;" text="18.200.000đ" />
+                        </HBox>
+                        <ProgressBar maxWidth="Infinity" progress="0.41" style="-fx-accent: #dc2626;" />
+                    </VBox>
+
+                    <VBox spacing="4">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #1e293b; -fx-font-size: 12px;" text="Sửa chữa &amp; Bảo dưỡng thiết bị" />
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #ea580c; -fx-font-size: 12px;" text="13.300.000đ" />
+                        </HBox>
+                        <ProgressBar maxWidth="Infinity" progress="0.30" style="-fx-accent: #ea580c;" />
+                    </VBox>
+
+                    <VBox spacing="4">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #1e293b; -fx-font-size: 12px;" text="Hóa đơn nước sạch" />
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #0284c7; -fx-font-size: 12px;" text="5.800.000đ" />
+                        </HBox>
+                        <ProgressBar maxWidth="Infinity" progress="0.13" style="-fx-accent: #0284c7;" />
+                    </VBox>
+
+                    <VBox spacing="4">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #1e293b; -fx-font-size: 12px;" text="Internet &amp; Vệ sinh chung" />
+                            <Pane HBox.hgrow="ALWAYS" />
+                            <Label style="-fx-font-weight: 700; -fx-text-fill: #475569; -fx-font-size: 12px;" text="7.000.000đ" />
+                        </HBox>
+                        <ProgressBar maxWidth="Infinity" progress="0.16" style="-fx-accent: #64748b;" />
+                    </VBox>
+                </VBox>
+            </VBox>
+        </HBox>
+
+        <!-- ROW 3: FINANCIAL CASHFLOW TABLE -->
+        <VBox spacing="12" styleClass="card">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="card-title" text="Bảng tổng hợp tài chính năm 2024" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnExportExcel" styleClass="btn-secondary" text="📥 Xuất báo cáo Excel" />
+            </HBox>
+
+            <!-- Table Header -->
+            <HBox spacing="10" style="-fx-padding: 6 0 10 0; -fx-border-color: #f1f5f9; -fx-border-width: 0 0 1 0;">
+                <Label prefWidth="90.0" styleClass="table-header-label" text="Tháng" />
+                <Label prefWidth="140.0" styleClass="table-header-label" text="Doanh thu" />
+                <Label prefWidth="140.0" styleClass="table-header-label" text="Chi phí vận hành" />
+                <Label prefWidth="140.0" styleClass="table-header-label" text="Lợi nhuận ròng" />
+                <Label prefWidth="120.0" styleClass="table-header-label" text="Tỷ lệ lấp đầy" />
+                <Label alignment="CENTER_RIGHT" prefWidth="100.0" styleClass="table-header-label" text="Biên LN" HBox.hgrow="ALWAYS" />
+            </HBox>
+
+            <VBox fx:id="cashflowListContainer" spacing="8" />
+        </VBox>
+    </VBox>
+</ScrollPane>

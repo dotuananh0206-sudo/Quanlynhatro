@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-padding: 16 24 24 24; -fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.ContractsController">
+    <!-- ROW 1: 4 STATS CARDS -->
+    <HBox spacing="14">
+        <VBox fx:id="cardActiveContracts" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="HĐ đang hiệu lực" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconActiveContracts" styleClass="icon-box-green" />
+            </HBox>
+            <Label styleClass="metric-value" text="42 HĐ" />
+            <Label styleClass="metric-trend-green" text="Tỷ lệ phủ kín 87.5%" />
+        </VBox>
+
+        <VBox fx:id="cardExpiringContracts" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Sắp hết hạn (&lt; 30 ngày)" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconExpiringContracts" styleClass="icon-box-yellow" />
+            </HBox>
+            <Label styleClass="metric-value" text="4 HĐ" />
+            <Label styleClass="metric-trend-red" text="Cần liên hệ ký gia hạn" />
+        </VBox>
+
+        <VBox fx:id="cardExpiredContracts" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Đã hết hạn" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconExpiredContracts" styleClass="icon-box-red" />
+            </HBox>
+            <Label styleClass="metric-value" text="2 HĐ" />
+            <Label styleClass="metric-trend-red" text="Chưa bàn giao phòng" />
+        </VBox>
+
+        <VBox fx:id="cardNewContracts" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Ký mới trong tháng" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconNewContracts" styleClass="icon-box-blue" />
+            </HBox>
+            <Label styleClass="metric-value" text="+6 HĐ" />
+            <Label styleClass="metric-trend-green" text="Tăng trưởng ổn định" />
+        </VBox>
+    </HBox>
+
+    <!-- ROW 2: SEARCH & FILTER -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <TextField fx:id="txtSearchContract" promptText="Tìm theo mã HĐ, tên khách, số phòng..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="cbContractFilter" prefWidth="180.0" styleClass="combo-box" />
+        <Button fx:id="btnAddContract" styleClass="btn-primary" text="+ Tạo hợp đồng mới" />
+    </HBox>
+
+    <!-- ROW 3: SPLIT LIST + DETAILS -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Contracts List (Left) -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
+            <VBox fx:id="contractsListContainer" spacing="10" style="-fx-padding: 0 4 10 0;" />
+        </ScrollPane>
+
+        <!-- Contract Details Panel (Right) -->
+        <VBox fx:id="contractDetailsPanel" prefWidth="320.0" spacing="14" styleClass="card" HBox.hgrow="NEVER">
+            <VBox spacing="4">
+                <Label fx:id="lblDetailCode" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="HD-2024-101" />
+                <Label fx:id="lblDetailRoom" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #2563eb;" text="Phòng P.101 - Khu trọ Hòa Bình" />
+            </VBox>
+
+            <HBox>
+                <Label fx:id="lblDetailStatus" styleClass="badge-green" text="●  Đang hiệu lực" />
+            </HBox>
+
+            <VBox spacing="8" style="-fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0; -fx-padding: 10 0 0 0;">
+                <Label style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #475569;" text="ĐIỀU KHOẢN HỢP ĐỒNG" />
+                
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #334155;" text="BÊN A - Cho thuê" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailOwner" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="Khu trọ Hòa Bình" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Địa chỉ Bên A:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailOwnerAddress" maxWidth="180.0" wrapText="true" style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="SĐT Bên A:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailOwnerPhone" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #334155;" text="BÊN B - Thuê" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailTenant" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="Nguyễn Văn An" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Địa chỉ Bên B:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailTenantAddress" maxWidth="180.0" wrapText="true" style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="SĐT Bên B:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailPhone" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="0912 345 678" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Thời hạn hợp đồng:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailPeriod" style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="01/03/2024 - 01/03/2025" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Giá thuê hàng tháng:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailRentPrice" style="-fx-font-size: 13px; -fx-font-weight: 800; -fx-text-fill: #2563eb;" text="3.500.000đ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tiền cọc phòng:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailDeposit" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="3.500.000đ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Thời gian còn lại:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailRemaining" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #059669;" text="Còn 187 ngày" />
+                </HBox>
+            </VBox>
+
+            <VBox spacing="8" style="-fx-padding: 8 0 0 0;">
+                <Button fx:id="btnEditContract" maxWidth="Infinity" styleClass="btn-outline" text="Chỉnh sửa hợp đồng" />
+                <Button fx:id="btnViewContract" maxWidth="Infinity" styleClass="btn-primary" text="Xem hợp đồng" />
+                <Button fx:id="btnRenewContract" maxWidth="Infinity" styleClass="btn-primary" text="Gia hạn hợp đồng" />
+                <Button fx:id="btnPrintContract" maxWidth="Infinity" styleClass="btn-secondary" text="In mẫu hợp đồng (PDF)" />
+                <Button fx:id="btnTerminateContract" maxWidth="Infinity" styleClass="btn-outline" text="Thanh lý hợp đồng" />
+                <Button fx:id="btnDeleteContract" maxWidth="Infinity" styleClass="btn-danger" text="Xóa hợp đồng" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

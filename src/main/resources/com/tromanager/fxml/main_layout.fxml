@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootPane" prefHeight="850.0" prefWidth="1380.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.MainController">
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox spacing="0" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <!-- Brand Header -->
+            <VBox styleClass="sidebar-brand-box" spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane fx:id="logoContainer" styleClass="sidebar-logo-container" />
+                    <VBox alignment="CENTER_LEFT" spacing="1">
+                        <Label styleClass="sidebar-app-name" text="TroManager" />
+                        <Label styleClass="sidebar-app-sub" text="Phần mềm quản lý phòng trọ" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Navigation Links -->
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                <VBox spacing="4" style="-fx-padding: 10 12;">
+                    <Button fx:id="btnNavDashboard" maxWidth="Infinity" styleClass="nav-button, nav-button-active" text="  Dashboard" />
+                    <Button fx:id="btnNavRooms" maxWidth="Infinity" styleClass="nav-button" text="  Khu trọ &amp; Phòng" />
+                    <Button fx:id="btnNavTenants" maxWidth="Infinity" styleClass="nav-button" text="  Khách thuê" />
+                    <Button fx:id="btnNavContracts" maxWidth="Infinity" styleClass="nav-button" text="  Hợp đồng" />
+                    <Button fx:id="btnNavInvoices" maxWidth="Infinity" styleClass="nav-button" text="  Hóa đơn" />
+                    <Button fx:id="btnNavAssets" maxWidth="Infinity" styleClass="nav-button" text="  Tài sản" />
+                    <Button fx:id="btnNavTasks" maxWidth="Infinity" styleClass="nav-button" text="  Công việc" />
+                        <Button fx:id="btnNavChat" maxWidth="Infinity" styleClass="nav-button" text="  Tin nhắn &amp; Thông báo" />
+                    <Button fx:id="btnNavReports" maxWidth="Infinity" styleClass="nav-button" text="  Báo cáo" />
+                    <Button fx:id="btnNavSettings" maxWidth="Infinity" styleClass="nav-button" text="  Cài đặt" />
+                </VBox>
+            </ScrollPane>
+
+            <!-- Sidebar Bottom: User & Logout -->
+            <VBox spacing="10" style="-fx-padding: 12 14 16 14; -fx-border-color: #1e293b; -fx-border-width: 1 0 0 0;">
+                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="sidebar-user-card">
+                    <StackPane fx:id="avatarContainer" style="-fx-background-color: #3b82f6; -fx-background-radius: 50%; -fx-pref-width: 32px; -fx-pref-height: 32px; -fx-min-width: 32px; -fx-min-height: 32px;" />
+                    <VBox alignment="CENTER_LEFT" spacing="1">
+                        <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #ffffff;" text="Nguyễn Minh Tuấn" />
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #94a3b8;" text="Chủ nhà trọ" />
+                    </VBox>
+                </HBox>
+                <Button fx:id="btnLogout" maxWidth="Infinity" styleClass="btn-logout" text="  Đăng xuất" />
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CENTER / TOP MAIN AREA -->
+    <center>
+        <BorderPane style="-fx-background-color: #f8fafc;" BorderPane.alignment="CENTER">
+            <!-- TOP HEADER -->
+            <top>
+                <HBox alignment="CENTER_LEFT" spacing="16" styleClass="top-header" BorderPane.alignment="CENTER">
+                    <VBox alignment="CENTER_LEFT" spacing="2" HBox.hgrow="ALWAYS">
+                        <Label fx:id="lblBreadcrumb" styleClass="breadcrumb-label" text="System  /  Tổng quan" />
+                        <Label fx:id="lblPageTitle" styleClass="page-title" text="Bảng Tổng Quan Dashboard" />
+                    </VBox>
+                    <HBox alignment="CENTER_RIGHT" spacing="12">
+                        <!-- Search Box -->
+                        <StackPane alignment="CENTER_LEFT">
+                            <TextField fx:id="txtSearch" promptText="Tìm kiếm phòng, khách thuê..." styleClass="search-field" />
+                            <StackPane fx:id="searchIconContainer" alignment="CENTER_LEFT" mouseTransparent="true" style="-fx-padding: 0 0 0 10;" />
+                        </StackPane>
+
+                        <!-- Notification Bell Button -->
+                        <Button fx:id="btnNotification" styleClass="btn-icon-circle" />
+
+                        <!-- Add Quick Button -->
+                        <Button fx:id="btnAddQuick" styleClass="btn-primary" text="+ Thêm Nhanh" />
+                    </HBox>
+                </HBox>
+            </top>
+
+            <!-- DYNAMIC CONTENT CONTAINER -->
+            <center>
+                <StackPane fx:id="contentArea" BorderPane.alignment="CENTER" />
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>

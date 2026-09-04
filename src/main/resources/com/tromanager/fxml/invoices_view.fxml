@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-padding: 16 24 24 24; -fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.InvoicesController">
+    <!-- ROW 1: 4 STATS CARDS -->
+    <HBox spacing="14">
+        <VBox fx:id="cardCollected" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Doanh thu đã thu" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconCollected" styleClass="icon-box-green" />
+            </HBox>
+            <Label styleClass="metric-value" text="156.800.000đ" />
+            <Label styleClass="metric-trend-green" text="Đạt 92.7% kế hoạch tháng" />
+        </VBox>
+
+        <VBox fx:id="cardUnpaid" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Còn nợ chưa thu" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconUnpaid" styleClass="icon-box-red" />
+            </HBox>
+            <Label styleClass="metric-value" text="12.400.000đ" />
+            <Label styleClass="metric-trend-red" text="4 hóa đơn sắp đến hạn" />
+        </VBox>
+
+        <VBox fx:id="cardTotalInvoices" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Số hóa đơn đã lập" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconTotalInvoices" styleClass="icon-box-blue" />
+            </HBox>
+            <Label styleClass="metric-value" text="48 hóa đơn" />
+            <Label styleClass="metric-trend-green" text="Kỳ thu Tháng 08/2024" />
+        </VBox>
+
+        <VBox fx:id="cardOverdue" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Hóa đơn quá hạn" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconOverdue" styleClass="icon-box-yellow" />
+            </HBox>
+            <Label styleClass="metric-value" text="0 hóa đơn" />
+            <Label styleClass="metric-trend-green" text="Thu tiền đúng hạn" />
+        </VBox>
+    </HBox>
+
+    <!-- ROW 2: SEARCH & FILTER -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <TextField fx:id="txtSearchInvoice" promptText="Tìm theo mã HĐ, tên phòng, tên khách..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="cbInvoiceStatus" prefWidth="180.0" styleClass="combo-box" />
+        <Button fx:id="btnBatchInvoice" styleClass="btn-secondary" text="⚡ Lập hóa đơn loạt" />
+        <Button fx:id="btnAddInvoice" styleClass="btn-primary" text="+ Tạo hóa đơn" />
+    </HBox>
+
+    <!-- ROW 3: SPLIT LIST + DETAILS -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Invoices List (Left) -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
+            <VBox fx:id="invoicesListContainer" spacing="10" style="-fx-padding: 0 4 10 0;" />
+        </ScrollPane>
+
+        <!-- Invoice Details Panel (Right) -->
+        <VBox fx:id="invoiceDetailsPanel" prefWidth="320.0" spacing="14" styleClass="card" HBox.hgrow="NEVER">
+            <VBox spacing="4">
+                <Label fx:id="lblDetailCode" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="INV-08-101" />
+                <Label fx:id="lblDetailPeriod" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #2563eb;" text="Kỳ thu Tháng 08/2024 - Phòng P.101" />
+            </VBox>
+
+            <HBox>
+                <Label fx:id="lblDetailStatus" styleClass="badge-green" text="●  Đã thanh toán" />
+            </HBox>
+
+            <VBox spacing="8" style="-fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0; -fx-padding: 10 0 0 0;">
+                <Label style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #475569;" text="CHI TIẾT KHOẢN THU" />
+                
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Khách thuê:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailTenant" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="Nguyễn Văn An" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tiền phòng:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailRoomAmount" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="3.500.000đ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tiền điện:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailElectricAmount" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="280.000đ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #94a3b8;" text="Chỉ số điện (cũ → mới):" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailElectricReading" style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="0 → 0" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tiền nước:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailWaterAmount" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="100.000đ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #94a3b8;" text="Chỉ số nước (cũ → mới):" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailWaterReading" style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="0 → 0" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Dịch vụ (vệ sinh, rác, internet):" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailOtherAmount" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="50.000đ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Giảm giá:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailDiscount" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="0 VNĐ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Nợ tháng trước:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailPreviousDebt" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="0 VNĐ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #94a3b8;" text="Vệ sinh / Rác / Internet:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailServiceBreakdown" style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="0đ / 0đ / 0đ" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" style="-fx-padding: 6 0 0 0; -fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0;">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="TỔNG CỘNG:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailTotalAmount" style="-fx-font-size: 15px; -fx-font-weight: 800; -fx-text-fill: #2563eb;" text="3.930.000đ" />
+                </HBox>
+            </VBox>
+
+            <VBox spacing="8" style="-fx-padding: 8 0 0 0;">
+                <Button fx:id="btnPayInvoice" maxWidth="Infinity" styleClass="btn-primary" text="Xác nhận thu tiền" />
+                <Button fx:id="btnPrintInvoice" maxWidth="Infinity" styleClass="btn-secondary" text="In phiếu thu (PDF)" />
+                <Button fx:id="btnSendNotification" maxWidth="Infinity" styleClass="btn-outline" text="Gửi thông báo Zalo/SMS" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

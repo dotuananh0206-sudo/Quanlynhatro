@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-padding: 16 24 24 24; -fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.TenantsController">
+    <!-- ROW 1: 4 STATS CARDS -->
+    <HBox spacing="14">
+        <VBox fx:id="cardTotalTenants" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Tổng khách thuê" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconTotalTenants" styleClass="icon-box-blue" />
+            </HBox>
+            <Label styleClass="metric-value" text="42 người" />
+            <Label styleClass="metric-trend-green" text="↑ 100% người lớn cư trú" />
+        </VBox>
+
+        <VBox fx:id="cardRegisteredTenants" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Đã đăng ký tạm trú" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconRegisteredTenants" styleClass="icon-box-green" />
+            </HBox>
+            <Label styleClass="metric-value" text="38 người" />
+            <Label styleClass="metric-trend-green" text="Tỷ lệ 90.5% hồ sơ chuẩn" />
+        </VBox>
+
+        <VBox fx:id="cardUnregisteredTenants" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Chưa đăng ký tạm trú" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconUnregisteredTenants" styleClass="icon-box-yellow" />
+            </HBox>
+            <Label styleClass="metric-value" text="4 người" />
+            <Label styleClass="metric-trend-red" text="Cần khai báo công an phường" />
+        </VBox>
+
+        <VBox fx:id="cardNewTenants" spacing="6" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="metric-title" text="Khách mới trong tháng" HBox.hgrow="ALWAYS" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <StackPane fx:id="iconNewTenants" styleClass="icon-box-blue" />
+            </HBox>
+            <Label styleClass="metric-value" text="+5 người" />
+            <Label styleClass="metric-trend-green" text="Tăng 12% so với tháng trước" />
+        </VBox>
+    </HBox>
+
+    <!-- ROW 2: SEARCH & FILTER BAR -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <TextField fx:id="txtSearchTenant" promptText="Tìm theo tên, SĐT, CCCD, số phòng..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="cbFilterStatus" prefWidth="180.0" styleClass="combo-box" />
+        <Button fx:id="btnAddTenant" styleClass="btn-primary" text="+ Thêm khách thuê" />
+    </HBox>
+
+    <!-- ROW 3: SPLIT LIST + DETAILS -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Tenants List (Left) -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
+            <VBox fx:id="tenantsListContainer" spacing="10" style="-fx-padding: 0 4 10 0;" />
+        </ScrollPane>
+
+        <!-- Tenant Details Panel (Right) -->
+        <VBox fx:id="tenantDetailsPanel" prefWidth="320.0" spacing="14" styleClass="card" HBox.hgrow="NEVER">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <StackPane style="-fx-background-color: #3b82f6; -fx-background-radius: 50%; -fx-pref-width: 44px; -fx-pref-height: 44px;">
+                    <Label fx:id="lblAvatarInitials" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: white;" text="NA" />
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="lblDetailName" style="-fx-font-size: 15px; -fx-font-weight: 800; -fx-text-fill: #0f172a;" text="Nguyễn Văn An" />
+                    <Label fx:id="lblDetailRoom" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #2563eb;" text="Phòng P.101" />
+                </VBox>
+            </HBox>
+
+            <HBox>
+                <Label fx:id="lblDetailTempReg" styleClass="badge-green" text="●  Đã đăng ký tạm trú" />
+            </HBox>
+
+            <VBox spacing="8" style="-fx-border-color: #f1f5f9; -fx-border-width: 1 0 0 0; -fx-padding: 10 0 0 0;">
+                <Label style="-fx-font-size: 11px; -fx-font-weight: 700; -fx-text-fill: #475569;" text="THÔNG TIN CÁ NHÂN" />
+                
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Số điện thoại:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailPhone" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="0912 345 678" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Số CCCD:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailIdCard" style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="001200012345" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Quê quán:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailHometown" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="Hà Nội" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Ngày bắt đầu ở:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailStartDate" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #1e293b;" text="01/03/2024" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Tiền cọc giữ chân:" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblDetailDeposit" style="-fx-font-size: 12px; -fx-font-weight: 800; -fx-text-fill: #2563eb;" text="3.500.000đ" />
+                </HBox>
+            </VBox>
+
+            <VBox spacing="8" style="-fx-padding: 8 0 0 0;">
+                <Button fx:id="btnEditTenant" maxWidth="Infinity" styleClass="btn-primary" text="Chỉnh sửa thông tin" />
+                <Button fx:id="btnRegisterTemp" maxWidth="Infinity" styleClass="btn-secondary" text="Khai báo tạm trú" />
+                <Button fx:id="btnLeaveRoom" maxWidth="Infinity" styleClass="btn-outline" text="Thủ tục trả phòng" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

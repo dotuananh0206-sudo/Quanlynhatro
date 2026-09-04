@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tromanager.controller.DashboardController">
+    <VBox spacing="20" style="-fx-padding: 20 24 30 24; -fx-background-color: #f8fafc;">
+        <!-- ROW 1: 5 METRIC CARDS -->
+        <HBox spacing="14">
+            <!-- Card 1: Tổng số phòng -->
+            <VBox fx:id="cardTotalRooms" spacing="8" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Tổng số phòng" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconTotalRooms" styleClass="icon-box-blue" />
+                </HBox>
+                <Label fx:id="lblTotalRooms" styleClass="metric-value" text="48" />
+                <HBox alignment="CENTER_LEFT" spacing="4">
+                    <Label styleClass="metric-trend-green" text="↑ +2 phòng mới" />
+                    <Label styleClass="metric-trend-sub" text="so với tháng trước" />
+                </HBox>
+            </VBox>
+
+            <!-- Card 2: Phòng đang thuê -->
+            <VBox fx:id="cardRentedRooms" spacing="8" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Phòng đang thuê" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconRentedRooms" styleClass="icon-box-green" />
+                </HBox>
+                <Label fx:id="lblRentedRooms" styleClass="metric-value" text="42" />
+                <HBox alignment="CENTER_LEFT" spacing="4">
+                    <Label styleClass="metric-trend-green" text="↑ Tỉ lệ lấp đầy 87.5%" />
+                    <Label styleClass="metric-trend-sub" text="so với tháng trước" />
+                </HBox>
+            </VBox>
+
+            <!-- Card 3: Phòng trống -->
+            <VBox fx:id="cardVacantRooms" spacing="8" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Phòng trống" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconVacantRooms" styleClass="icon-box-yellow" />
+                </HBox>
+                <Label fx:id="lblVacantRooms" styleClass="metric-value" text="6" />
+                <HBox alignment="CENTER_LEFT" spacing="4">
+                    <Label styleClass="metric-trend-red" text="↓ -1 phòng trống" />
+                    <Label styleClass="metric-trend-sub" text="so với tháng trước" />
+                </HBox>
+            </VBox>
+
+            <!-- Card 4: Doanh thu tháng này -->
+            <VBox fx:id="cardMonthlyRevenue" spacing="8" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Doanh thu tháng n..." HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconMonthlyRevenue" styleClass="icon-box-blue" />
+                </HBox>
+                <Label fx:id="lblMonthlyRevenue" styleClass="metric-value" text="156.800.000đ" />
+                <HBox alignment="CENTER_LEFT" spacing="4">
+                    <Label styleClass="metric-trend-green" text="↑ +4.2% so với tháng trước" />
+                </HBox>
+            </VBox>
+
+            <!-- Card 5: Chưa thanh toán -->
+            <VBox fx:id="cardUnpaidRevenue" spacing="8" styleClass="metric-card, metric-clickable" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="metric-title" text="Chưa thanh toán" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconUnpaidRevenue" styleClass="icon-box-red" />
+                </HBox>
+                <Label fx:id="lblUnpaidRevenue" styleClass="metric-value" text="12.400.000đ" />
+                <HBox alignment="CENTER_LEFT" spacing="4">
+                    <Label styleClass="metric-trend-red" text="↓ 4 hóa đơn trễ hạn" />
+                    <Label styleClass="metric-trend-sub" text="so với tháng trước" />
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <!-- ROW 2: 2 CHARTS -->
+        <HBox spacing="16">
+            <!-- Left Chart: Doanh thu 6 tháng gần nhất -->
+            <VBox spacing="14" styleClass="card" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label styleClass="card-title" text="Doanh thu 6 tháng gần nhất" />
+                        <Label styleClass="card-subtitle" text="Đơn vị tính: triệu VND (đ)" />
+                    </VBox>
+                    <Label style="-fx-background-color: #f1f5f9; -fx-padding: 4 10; -fx-background-radius: 6; -fx-font-weight: 600; -fx-font-size: 11px; -fx-text-fill: #475569;" text="Năm 2024" />
+                </HBox>
+                
+                <!-- Custom Bar Chart Container -->
+                <HBox fx:id="barChartContainer" alignment="BOTTOM_CENTER" prefHeight="190.0" spacing="28" style="-fx-padding: 10 20 0 20;" VBox.vgrow="ALWAYS" />
+            </VBox>
+
+            <!-- Right Chart: Tỷ lệ lấp đầy phòng -->
+            <VBox prefWidth="380.0" spacing="14" styleClass="card">
+                <VBox spacing="2">
+                    <Label styleClass="card-title" text="Tỷ lệ lấp đầy phòng" />
+                    <Label styleClass="card-subtitle" text="Tổng quy mô: 48 phòng trọ" />
+                </VBox>
+
+                <HBox alignment="CENTER" spacing="20" VBox.vgrow="ALWAYS">
+                    <!-- Donut Chart Canvas Container -->
+                    <StackPane fx:id="donutChartContainer" prefHeight="170.0" prefWidth="170.0" />
+
+                    <!-- Legend -->
+                    <VBox alignment="CENTER_LEFT" spacing="14">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <StackPane style="-fx-background-color: #059669; -fx-background-radius: 50%; -fx-pref-width: 10px; -fx-pref-height: 10px;" />
+                            <VBox spacing="1">
+                                <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="Đang thuê (42 phòng)" />
+                                <Label style="-fx-font-size: 10px; -fx-text-fill: #94a3b8;" text="Mang lại doanh thu ổn định" />
+                            </VBox>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <StackPane style="-fx-background-color: #f59e0b; -fx-background-radius: 50%; -fx-pref-width: 10px; -fx-pref-height: 10px;" />
+                            <VBox spacing="1">
+                                <Label style="-fx-font-size: 12px; -fx-font-weight: 700; -fx-text-fill: #1e293b;" text="Trống (6 phòng)" />
+                                <Label style="-fx-font-size: 10px; -fx-text-fill: #94a3b8;" text="Cần đẩy mạnh quảng cáo" />
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <!-- ROW 3: 3 BOTTOM CARDS -->
+        <HBox spacing="16">
+            <!-- Card 1: Hóa đơn sắp đến hạn -->
+            <VBox fx:id="invoicesSection" spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="card-title" text="Hóa đơn sắp đến hạn" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconInvoicesHeader" />
+                </HBox>
+
+                <!-- Table Header -->
+                <HBox spacing="10" style="-fx-padding: 4 0 8 0; -fx-border-color: #f1f5f9; -fx-border-width: 0 0 1 0;">
+                    <Label prefWidth="48.0" styleClass="table-header-label" text="Phòng" />
+                    <Label prefWidth="90.0" styleClass="table-header-label" text="Số tiền" />
+                    <Label prefWidth="80.0" styleClass="table-header-label" text="Hạn đóng" />
+                    <Label alignment="CENTER_RIGHT" prefWidth="100.0" styleClass="table-header-label" text="Trạng thái" HBox.hgrow="ALWAYS" />
+                </HBox>
+
+                <!-- Invoices List Container -->
+                <VBox fx:id="invoicesListContainer" spacing="8" />
+            </VBox>
+
+            <!-- Card 2: Hợp đồng sắp hết hạn -->
+            <VBox fx:id="contractsSection" spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="card-title" text="Hợp đồng sắp hết hạn" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconContractsHeader" />
+                </HBox>
+
+                <!-- Contracts List Container -->
+                <VBox fx:id="contractsListContainer" spacing="10" />
+            </VBox>
+
+            <!-- Card 3: Công việc cần xử lý -->
+            <VBox fx:id="tasksSection" spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="card-title" text="Công việc cần xử lý" HBox.hgrow="ALWAYS" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="iconTasksHeader" />
+                </HBox>
+
+                <!-- Tasks List Container -->
+                <VBox fx:id="tasksListContainer" spacing="10" />
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>
